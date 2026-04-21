@@ -1,34 +1,33 @@
-import java.util.Random;
+import java.util.Scanner;
 
 public class TicTacToe {
 
-    static char player1Symbol;
-    static char player2Symbol;
-    static char currentPlayer;
+    static Scanner scanner = new Scanner(System.in);
 
-    public static void decideFirstPlayer() {
-        Random rand = new Random();
-        int toss = rand.nextInt(2); // 0 or 1
+    // UC3: Get user slot input
+    public static int getUserInput() {
+        int slot;
 
-        if (toss == 0) {
-            player1Symbol = 'X';
-            player2Symbol = 'O';
-            currentPlayer = player1Symbol;
+        while (true) {
+            System.out.print("Enter a slot (1-9): ");
 
-            System.out.println("Player 1 starts!");
-        } else {
-            player1Symbol = 'O';
-            player2Symbol = 'X';
-            currentPlayer = player2Symbol;
+            if (scanner.hasNextInt()) {
+                slot = scanner.nextInt();
 
-            System.out.println("Player 2 starts!");
+                if (slot >= 1 && slot <= 9) {
+                    return slot; // valid input
+                } else {
+                    System.out.println("Invalid input! Please enter a number between 1 and 9.");
+                }
+            } else {
+                System.out.println("Invalid input! Please enter a number.");
+                scanner.next(); // clear invalid input
+            }
         }
-
-        System.out.println("Player 1 Symbol: " + player1Symbol);
-        System.out.println("Player 2 Symbol: " + player2Symbol);
     }
 
     public static void main(String[] args) {
-        decideFirstPlayer();
+        int userMove = getUserInput();
+        System.out.println("You selected slot: " + userMove);
     }
 }
