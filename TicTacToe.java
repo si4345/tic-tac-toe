@@ -1,33 +1,36 @@
-import java.util.Scanner;
-
 public class TicTacToe {
 
-    static Scanner scanner = new Scanner(System.in);
+    static char[][] board = {
+        {'-', '-', '-'},
+        {'-', '-', '-'},
+        {'-', '-', '-'}
+    };
 
-    // UC3: Get user slot input
-    public static int getUserInput() {
-        int slot;
+    // UC5: Validate move
+    public static boolean isValidMove(int row, int col) {
 
-        while (true) {
-            System.out.print("Enter a slot (1-9): ");
-
-            if (scanner.hasNextInt()) {
-                slot = scanner.nextInt();
-
-                if (slot >= 1 && slot <= 9) {
-                    return slot; // valid input
-                } else {
-                    System.out.println("Invalid input! Please enter a number between 1 and 9.");
-                }
-            } else {
-                System.out.println("Invalid input! Please enter a number.");
-                scanner.next(); // clear invalid input
-            }
+        // Check bounds
+        if (row < 0 || row > 2 || col < 0 || col > 2) {
+            return false;
         }
+
+        // Check if cell is empty
+        if (board[row][col] != '-') {
+            return false;
+        }
+
+        return true;
     }
 
     public static void main(String[] args) {
-        int userMove = getUserInput();
-        System.out.println("You selected slot: " + userMove);
+
+        int row = 1;
+        int col = 1;
+
+        if (isValidMove(row, col)) {
+            System.out.println("Valid move");
+        } else {
+            System.out.println("Invalid move");
+        }
     }
 }
