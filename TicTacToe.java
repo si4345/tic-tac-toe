@@ -1,19 +1,57 @@
 public class TicTacToe {
 
-    // UC4: Convert slot to row & column
-    public static int[] convertSlotToIndex(int slot) {
-        int row = (slot - 1) / 3;
-        int col = (slot - 1) % 3;
-        return new int[]{row, col};
-    }
+    static char[][] board = {
+        {'X', 'O', 'X'},
+        {'O', 'X', 'O'},
+        {'O', 'X', 'O'}
+    };
 
     public static void main(String[] args) {
+        System.out.println(isDraw());
+    }
 
-        int slot = 5; // example input
+    // UC10: Check draw condition
+    static boolean isDraw() {
 
-        int[] index = convertSlotToIndex(slot);
+        for (int r = 0; r < 3; r++) {
+            for (int c = 0; c < 3; c++) {
 
-        System.out.println("Row: " + index[0]);
-        System.out.println("Column: " + index[1]);
+                // If any empty cell exists → not draw
+                if (board[r][c] == '-') {
+                    return false;
+                }
+            }
+        }
+
+        // No empty cells → draw
+        return true;
+    }
+}public class TicTacToe {
+
+    static char[][] board = {
+        {'X', 'O', 'X'},
+        {'O', 'X', 'O'},
+        {'O', 'X', 'O'}
+    };
+
+    public static void main(String[] args) {
+        System.out.println(isDraw());
+    }
+
+    // UC10: Check draw condition
+    static boolean isDraw() {
+
+        for (int r = 0; r < 3; r++) {
+            for (int c = 0; c < 3; c++) {
+
+                // If any empty cell exists → not draw
+                if (board[r][c] == '-') {
+                    return false;
+                }
+            }
+        }
+
+        // No empty cells → draw
+        return true;
     }
 }
