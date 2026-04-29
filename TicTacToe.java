@@ -1,19 +1,51 @@
 public class TicTacToe {
 
-    // UC4: Convert slot to row & column
-    public static int[] convertSlotToIndex(int slot) {
-        int row = (slot - 1) / 3;
-        int col = (slot - 1) % 3;
-        return new int[]{row, col};
-    }
+    static char[][] board = new char[3][3];
 
     public static void main(String[] args) {
 
-        int slot = 5; // example input
+        // Sample test data (you can change)
+        board[0][0] = 'X';
+        board[0][1] = 'X';
+        board[0][2] = 'X';
 
-        int[] index = convertSlotToIndex(slot);
+        System.out.println(hasWon('X'));
+    }
 
-        System.out.println("Row: " + index[0]);
-        System.out.println("Column: " + index[1]);
+    // UC9: Check winning condition
+    static boolean hasWon(char symbol) {
+
+        // Check rows
+        for (int i = 0; i < 3; i++) {
+            if (board[i][0] == symbol &&
+                board[i][1] == symbol &&
+                board[i][2] == symbol) {
+                return true;
+            }
+        }
+
+        // Check columns
+        for (int i = 0; i < 3; i++) {
+            if (board[0][i] == symbol &&
+                board[1][i] == symbol &&
+                board[2][i] == symbol) {
+                return true;
+            }
+        }
+
+        // Check diagonals
+        if (board[0][0] == symbol &&
+            board[1][1] == symbol &&
+            board[2][2] == symbol) {
+            return true;
+        }
+
+        if (board[0][2] == symbol &&
+            board[1][1] == symbol &&
+            board[2][0] == symbol) {
+            return true;
+        }
+
+        return false;
     }
 }
